@@ -49,8 +49,8 @@ class TurnTest < Minitest::Test
     card_18 = Card.new(:spade, 'Three', 3)
     deck_3 = Deck.new([card_13, card_14, card_15])
     deck_4 = Deck.new([card_16, card_17, card_18])
-    player_3 = Player.new('Clarisa', deck_3)
-    player_4 = Player.new('Sam', deck_4)
+    player_3 = Player.new('Ferguson', deck_3)
+    player_4 = Player.new('Janet', deck_4)
     turn_2 = Turn.new(player_3, player_4)
 
     assert_equal :mutually_assured_destruction, turn_2.type
@@ -65,10 +65,50 @@ class TurnTest < Minitest::Test
     card_18 = Card.new(:spade, 'Four', 4)
     deck_3 = Deck.new([card_13, card_14, card_15])
     deck_4 = Deck.new([card_16, card_17, card_18])
-    player_3 = Player.new('Clarisa', deck_3)
-    player_4 = Player.new('Sam', deck_4)
+    player_3 = Player.new('Ferguson', deck_3)
+    player_4 = Player.new('Janet', deck_4)
     turn_2 = Turn.new(player_3, player_4)
 
     assert_equal :war, turn_2.type
+  end
+
+  def test_winner_basic
+    assert_equal :basic, @turn.type
+
+    assert_equal @player_1, @turn.winner
+  end
+
+  def test_winner_mutually_assured_destruction
+    card_13 = Card.new(:diamond, 'Queen', 12)
+    card_14 = Card.new(:heart, 'Ace', 14)
+    card_15 = Card.new(:clubs, 'Three', 3)
+    card_16 = Card.new(:heart, 'Queen', 12)
+    card_17 = Card.new(:heart, 'Eight', 8)
+    card_18 = Card.new(:spade, 'Three', 3)
+    deck_3 = Deck.new([card_13, card_14, card_15])
+    deck_4 = Deck.new([card_16, card_17, card_18])
+    player_3 = Player.new('Ferguson', deck_3)
+    player_4 = Player.new('Janet', deck_4)
+    turn_2 = Turn.new(player_3, player_4)
+    assert_equal :mutually_assured_destruction, turn_2.type
+
+    assert_equal "No Winner", turn_2.winner
+  end
+
+  def test_winner_war
+    card_13 = Card.new(:diamond, 'Queen', 12)
+    card_14 = Card.new(:heart, 'Ace', 14)
+    card_15 = Card.new(:clubs, 'Three', 3)
+    card_16 = Card.new(:heart, 'Queen', 12)
+    card_17 = Card.new(:heart, 'Eight', 8)
+    card_18 = Card.new(:spade, 'Four', 4)
+    deck_3 = Deck.new([card_13, card_14, card_15])
+    deck_4 = Deck.new([card_16, card_17, card_18])
+    player_3 = Player.new('Ferguson', deck_3)
+    player_4 = Player.new('Janet', deck_4)
+    turn_2 = Turn.new(player_3, player_4)
+    assert_equal :war, turn_2.type
+
+    assert_equal player_4, turn_2.winner
   end
 end
