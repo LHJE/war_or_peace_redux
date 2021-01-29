@@ -33,4 +33,14 @@ class DeckTest < Minitest::Test
 
     assert_equal 14, deck.rank_of_card_at(1)
   end
+
+  def test_high_ranking_cards
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:heart, 'Ace', 14)
+    card_3 = Card.new(:club, 'Two', 2)
+    card_4 = Card.new(:spade, 'Three', 3)
+    deck = Deck.new([card_1, card_2, card_3, card_4])
+
+    assert_equal [card_1, card_2], deck.high_ranking_cards
+  end
 end
