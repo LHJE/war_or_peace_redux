@@ -23,19 +23,17 @@ class TurnTest < Minitest::Test
     deck_2 = Deck.new([card_7, card_8, card_9, card_10, card_11, card_12])
     @player_1 = Player.new('Clarisa', deck_1)
     @player_2 = Player.new('Sam', deck_2)
+    @turn = Turn.new(@player_1, @player_2)
   end
 
   def test_it_exists
-    turn = Turn.new(@player_1, @player_2)
 
-    assert_instance_of Turn, turn
+    assert_instance_of Turn, @turn
   end
 
   def test_it_has_readable_attributes
-    turn = Turn.new(@player_1, @player_2)
-
-    assert_equal @player_1, turn.player_1
-    assert_equal @player_2, turn.player_2
-    assert_equal [], turn.spoils_of_war
+    assert_equal @player_1, @turn.player_1
+    assert_equal @player_2, @turn.player_2
+    assert_equal [], @turn.spoils_of_war
   end
 end
