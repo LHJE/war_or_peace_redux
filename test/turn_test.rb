@@ -27,7 +27,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_exists
-
     assert_instance_of Turn, @turn
   end
 
@@ -35,5 +34,41 @@ class TurnTest < Minitest::Test
     assert_equal @player_1, @turn.player_1
     assert_equal @player_2, @turn.player_2
     assert_equal [], @turn.spoils_of_war
+  end
+
+  def test_type_basic
+    assert_equal :basic, @turn.type
+  end
+
+  def test_type_mutually_assured_destruction
+    card_13 = Card.new(:diamond, 'Queen', 12)
+    card_14 = Card.new(:heart, 'Ace', 14)
+    card_15 = Card.new(:clubs, 'Three', 3)
+    card_16 = Card.new(:heart, 'Queen', 12)
+    card_17 = Card.new(:heart, 'Eight', 8)
+    card_18 = Card.new(:spade, 'Three', 3)
+    deck_3 = Deck.new([card_13, card_14, card_15])
+    deck_4 = Deck.new([card_16, card_17, card_18])
+    player_3 = Player.new('Clarisa', deck_3)
+    player_4 = Player.new('Sam', deck_4)
+    turn_2 = Turn.new(player_3, player_4)
+
+    assert_equal :mutually_assured_destruction, turn_2.type
+  end
+
+  def test_type_war
+    card_13 = Card.new(:diamond, 'Queen', 12)
+    card_14 = Card.new(:heart, 'Ace', 14)
+    card_15 = Card.new(:clubs, 'Three', 3)
+    card_16 = Card.new(:heart, 'Queen', 12)
+    card_17 = Card.new(:heart, 'Eight', 8)
+    card_18 = Card.new(:spade, 'Four', 4)
+    deck_3 = Deck.new([card_13, card_14, card_15])
+    deck_4 = Deck.new([card_16, card_17, card_18])
+    player_3 = Player.new('Clarisa', deck_3)
+    player_4 = Player.new('Sam', deck_4)
+    turn_2 = Turn.new(player_3, player_4)
+
+    assert_equal :war, turn_2.type
   end
 end
