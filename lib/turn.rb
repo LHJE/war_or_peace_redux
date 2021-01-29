@@ -38,4 +38,23 @@ class Turn
     end
   end
 
+  def shoveler
+    @spoils_of_war << @player_1.deck.cards[0]
+    @spoils_of_war << @player_2.deck.cards[0]
+    @player_1.deck.remove_card
+    @player_2.deck.remove_card
+  end
+
+  def pile_cards
+    if self.type == :mutually_assured_destruction
+      3.times { @player_1.deck.remove_card }
+      3.times { @player_2.deck.remove_card }
+    elsif self.type == :war
+      3.times { self.shoveler }
+    else
+      self.shoveler
+    end
+
+  end
+
 end
