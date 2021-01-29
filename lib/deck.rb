@@ -22,4 +22,8 @@ class Deck
     ((self.high_ranking_cards.count.to_f / @cards.count.to_f) * 100).round(2)
   end
 
+  def add_card(card)
+    @cards << card
+  end
+
 end
