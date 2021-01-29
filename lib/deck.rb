@@ -18,4 +18,8 @@ class Deck
     end.compact
   end
 
+  def percent_high_ranking
+    ((self.high_ranking_cards.count.to_f / @cards.count.to_f) * 100).round(2)
+  end
+
 end
