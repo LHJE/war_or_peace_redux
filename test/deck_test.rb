@@ -55,4 +55,20 @@ class DeckTest < Minitest::Test
 
     assert_equal 33.33, deck.percent_high_ranking
   end
+
+  def test_add_card
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:heart, 'Ace', 14)
+    deck = Deck.new([card_1, card_2])
+
+    assert_equal [card_1, card_2], deck.cards
+
+    card_3 = Card.new(:spade, 'Three', 3)
+
+    deck.add_card(card_3)
+
+    assert_equal [card_1, card_2, card_3], deck.cards
+  end
+
+
 end
