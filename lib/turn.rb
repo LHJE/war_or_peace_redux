@@ -20,14 +20,6 @@ class Turn
     end
   end
 
-  def who_is_higher(index)
-    if @player_1.deck.rank_of_card_at(0) > @player_2.deck.rank_of_card_at(0)
-      @player_1
-    else
-      @player_2
-    end
-  end
-
   def winner
     if self.type == :mutually_assured_destruction
       "No Winner"
@@ -38,11 +30,12 @@ class Turn
     end
   end
 
-  def shoveler
-    @spoils_of_war << @player_1.deck.cards[0]
-    @spoils_of_war << @player_2.deck.cards[0]
-    @player_1.deck.remove_card
-    @player_2.deck.remove_card
+  def who_is_higher(index)
+    if @player_1.deck.rank_of_card_at(0) > @player_2.deck.rank_of_card_at(0)
+      @player_1
+    else
+      @player_2
+    end
   end
 
   def pile_cards
@@ -54,7 +47,27 @@ class Turn
     else
       self.shoveler
     end
-
   end
 
+  def shoveler
+    @spoils_of_war << @player_1.deck.cards[0]
+    @spoils_of_war << @player_2.deck.cards[0]
+    @player_1.deck.remove_card
+    @player_2.deck.remove_card
+  end
+
+  def award_spoils(victor)
+    if @player_1 == victor
+      distributor(@player_1)
+    else
+      distributor(@player_2)
+    end
+  end
+
+  def distributor(player)
+    @spoils_of_war.each do |spoil|
+      player.deck.cards << spoil
+    end
+    @spoils_of_war = []
+  end
 end
