@@ -3,61 +3,13 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
+require './lib/card_generator'
 
-card1 = Card.new(:club, '2', 2)
-card2 = Card.new(:club, '3', 3)
-card3 = Card.new(:club, '4', 4)
-card4 = Card.new(:club, '5', 5)
-card5 = Card.new(:club, '6', 6)
-card6 = Card.new(:club, '7', 7)
-card7 = Card.new(:club, '8', 8)
-card8 = Card.new(:club, '9', 9)
-card9 = Card.new(:club, '10', 10)
-card10 = Card.new(:club, 'Jack', 11)
-card11 = Card.new(:club, 'Queen', 12)
-card12 = Card.new(:club, 'King', 13)
-card13 = Card.new(:club, 'Ace', 14)
-card14 = Card.new(:spade, '2', 2)
-card15 = Card.new(:spade, '3', 3)
-card16 = Card.new(:spade, '4', 4)
-card17 = Card.new(:spade, '5', 5)
-card18 = Card.new(:spade, '6', 6)
-card19 = Card.new(:spade, '7', 7)
-card20 = Card.new(:spade, '8', 8)
-card21 = Card.new(:spade, '9', 9)
-card22 = Card.new(:spade, '10', 10)
-card23 = Card.new(:spade, 'Jack', 11)
-card24 = Card.new(:spade, 'Queen', 12)
-card25 = Card.new(:spade, 'King', 13)
-card26 = Card.new(:spade, 'Ace', 14)
-card27 = Card.new(:diamond, '2', 2)
-card28 = Card.new(:diamond, '3', 3)
-card29 = Card.new(:diamond, '4', 4)
-card30 = Card.new(:diamond, '5', 5)
-card31 = Card.new(:diamond, '6', 6)
-card32 = Card.new(:diamond, '7', 7)
-card33 = Card.new(:diamond, '8', 8)
-card34 = Card.new(:diamond, '9', 9)
-card35 = Card.new(:diamond, '10', 10)
-card36 = Card.new(:diamond, 'Jack', 11)
-card37 = Card.new(:diamond, 'Queen', 12)
-card38 = Card.new(:diamond, 'King', 13)
-card39 = Card.new(:diamond, 'Ace', 14)
-card40 = Card.new(:heart, '2', 2)
-card41 = Card.new(:heart, '3', 3)
-card42 = Card.new(:heart, '4', 4)
-card43 = Card.new(:heart, '5', 5)
-card44 = Card.new(:heart, '6', 6)
-card45 = Card.new(:heart, '7', 7)
-card46 = Card.new(:heart, '8', 8)
-card47 = Card.new(:heart, '9', 9)
-card48 = Card.new(:heart, '10', 10)
-card49 = Card.new(:heart, 'Jack', 11)
-card50 = Card.new(:heart, 'Queen', 12)
-card51 = Card.new(:heart, 'King', 13)
-card52 = Card.new(:heart, 'Ace', 14)
+filename = "cards.txt"
 
-masterdeck = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52].shuffle
+cards = CardGenerator.new(filename).cards
+
+masterdeck = [cards[0], cards[1], cards[2], cards[3], cards[4], cards[5], cards[6], cards[7], cards[8], cards[9], cards[10], cards[11], cards[12], cards[13], cards[14], cards[15], cards[16], cards[17], cards[18], cards[19], cards[20], cards[21], cards[22], cards[23], cards[24], cards[25], cards[26], cards[27], cards[28], cards[29], cards[30], cards[31], cards[32], cards[33], cards[34], cards[35], cards[36], cards[37], cards[38], cards[39], cards[40], cards[41], cards[42], cards[43], cards[44], cards[45], cards[46], cards[47], cards[48], cards[49], cards[50], cards[51]].shuffle
 
 deck1 = Deck.new([])
 deck2 = Deck.new([])
