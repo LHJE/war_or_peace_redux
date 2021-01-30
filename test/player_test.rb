@@ -22,7 +22,6 @@ class PlayerTest < Minitest::Test
   end
 
   def test_it_has_readable_attributes
-
     assert_equal 'Clarisa', @player.name
     assert_equal @deck, @player.deck
   end
