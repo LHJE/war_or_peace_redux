@@ -28,9 +28,29 @@ class Game
       p "-----------------"
       self.start
     else
-      take_a_turn
+      play_the_game
     end
   end
+
+  def play_the_game
+    turn_count = 0
+    until @player_1.has_lost? || @player_2.has_lost? == []
+      turn_count += 1
+      if turn_count == 1000001
+        break
+      else
+        take_a_turn(turn_count)
+      end
+    end
+    if !@player_1.has_lost? && !@player_2.has_lost?
+      p "---- DRAW ----"
+    elsif @player_1.has_lost?
+      p "*~*~*~* #{@player_2.name} has won the game! *~*~*~* "
+    else
+      p "*~*~*~* #{@player_1.name} has won the game! *~*~*~* "
+    end
+  end
+
 
   def take_a_turn(turn_count)
     turn = Turn.new(@player_1, @player_2)
