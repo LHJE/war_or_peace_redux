@@ -113,4 +113,83 @@ class GameTest < Minitest::Test
   # 5) war: Player 1 wins
   # 6) basic: Player 1 wins
 
+  def test_take_one_turn
+    turn = Turn.new(@player1, @player2)
+    assert_equal :mutually_assured_destruction, turn.type
+
+    @game.take_a_turn(1)
+
+    assert_equal 23, @player1.deck.cards.count
+    assert_equal 23, @player2.deck.cards.count
+  end
+
+  def test_take_two_turns
+    @game.take_a_turn(1)
+
+    @turn = Turn.new(@player1, @player2)
+    assert_equal :war, @turn.type
+
+    @game.take_a_turn(2)
+
+    assert_equal 20, @player1.deck.cards.count
+    assert_equal 26, @player2.deck.cards.count
+  end
+
+  def test_take_three_turns
+    #the object being put into `take_a_turn` doesn't matter in this test as it is just for printing, but it needs to be there or the whole thing breaks
+    2.times { @game.take_a_turn(2) }
+
+    @turn = Turn.new(@player1, @player2)
+    assert_equal :basic, @turn.type
+
+    @game.take_a_turn(1)
+
+    assert_equal 19, @player1.deck.cards.count
+    assert_equal 27, @player2.deck.cards.count
+  end
+
+  def test_take_four_turns
+    3.times { @game.take_a_turn(4) }
+
+    @turn = Turn.new(@player1, @player2)
+    assert_equal :mutually_assured_destruction, @turn.type
+
+    @game.take_a_turn(1)
+
+    assert_equal 16, @player1.deck.cards.count
+    assert_equal 24, @player2.deck.cards.count
+  end
+
+  def test_take_five_turns
+    4.times { @game.take_a_turn(5) }
+
+    @turn = Turn.new(@player1, @player2)
+    assert_equal :war, @turn.type
+
+    @game.take_a_turn(1)
+
+    assert_equal 19, @player1.deck.cards.count
+    assert_equal 21, @player2.deck.cards.count
+  end
+
+  def test_take_five_turns
+    5.times { @game.take_a_turn(6) }
+
+    @turn = Turn.new(@player1, @player2)
+    assert_equal :basic, @turn.type
+
+    @game.take_a_turn(1)
+
+    assert_equal 20, @player1.deck.cards.count
+    assert_equal 20, @player2.deck.cards.count
+  end
+
+  def test_take_all_the_turns
+    972.times { @game.take_a_turn(972) }
+
+    assert_equal 0, @player1.deck.cards.count
+    assert_equal true, @player1.has_lost?
+    assert_equal 34, @player2.deck.cards.count
+    assert_equal false, @player2.has_lost?
+  end
 end
