@@ -31,7 +31,7 @@ class Turn
   end
 
   def who_is_higher(index)
-    if @player_1.deck.rank_of_card_at(0) > @player_2.deck.rank_of_card_at(0)
+    if @player_1.deck.rank_of_card_at(index) > @player_2.deck.rank_of_card_at(index)
       @player_1
     else
       @player_2
